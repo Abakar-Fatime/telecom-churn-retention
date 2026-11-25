@@ -1,0 +1,13 @@
+flowchart LR
+    D[("IBM Telco data<br/>7,043 customers")] --> CM["Churn models<br/>logistic vs LightGBM<br/>SHAP reasons"]
+    D --> SV["Survival analysis<br/>Cox + Weibull AFT<br/>time to churn, value"]
+    D --> SIM["Simulated offer tests<br/>4 randomised waves"]
+    SV --> SIM
+    SIM --> UP["Uplift models<br/>T-learner LightGBM<br/>per offer"]
+    SV --> NBA["Next-best-action<br/>net value under budget"]
+    UP --> NBA
+    NBA --> MSG["AI messages EN/FR<br/>LLM + guardrails"]
+    CM --> API["FastAPI"]
+    NBA --> API
+    MSG --> API
+    API --> UI["Dashboard<br/>JavaScript + Chart.js"]
